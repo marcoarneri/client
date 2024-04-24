@@ -3,7 +3,7 @@
 </div>
 
 <div>
-    <form class="col-md-5" (ngSubmit)="processaForm()">
+    <form class="col-md-5" (ngSubmit)="name.valid && cognome.valid && username.valid && eta.valid && processaForm()">
 
         <div class="form-group">
             <label for="id">ID</label>
@@ -12,22 +12,42 @@
 
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" name="nome" class="form-control" [(ngModel)] = "cliente.nome" required>
+            <input type="text" name="nome" class="form-control" required minlength="4" maxlength="20" [(ngModel)] = "cliente.nome" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors?.['required']">Name is required.</div>
+                <div *ngIf="name.errors?.['minlength']">Name must be at least 4 characters long.</div>
+                <div *ngIf="name.errors?.['maxlength']">Name must be max 20 characters long.</div>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="cognome">Cognome</label>
-            <input type="text" name="cognome" class="form-control" [(ngModel)] = "cliente.cognome" required>
+            <input type="text" name="cognome" class="form-control" required minlength="4" maxlength="20" [(ngModel)] = "cliente.cognome" #cognome="ngModel">
+            <div *ngIf="cognome.invalid && (cognome.dirty || cognome.touched)" class="alert alert-danger">
+                <div *ngIf="cognome.errors?.['required']">Cognome is required.</div>
+                <div *ngIf="cognome.errors?.['minlength']">Cognome must be at least 4 characters long.</div>
+                <div *ngIf="cognome.errors?.['maxlength']">Cognome must be max 20 characters long.</div>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" [(ngModel)] = "cliente.username" required>
+            <input type="text" name="username" class="form-control" required minlength="4" maxlength="20" [(ngModel)] = "cliente.username" #username="ngModel">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                <div *ngIf="username.errors?.['required']">Username is required.</div>
+                <div *ngIf="username.errors?.['minlength']">Username must be at least 4 characters long.</div>
+                <div *ngIf="username.errors?.['maxlength']">Username must be max 20 characters long.</div>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="eta">Età</label>
-            <input type="text" name="eta" step="1" class="form-control" [(ngModel)] = "cliente.eta" required>
+            <input type="number" name="eta" class="form-control" required min="18" max="90" [(ngModel)] = "cliente.eta" #eta="ngModel">
+            <div *ngIf="eta.invalid && (eta.dirty || eta.touched)" class="alert alert-danger">
+                <div *ngIf="eta.errors?.['required']">Eta is required.</div>
+                <div *ngIf="eta.errors?.['min']">Eta must be over 18 years.</div>
+                <div *ngIf="eta.errors?.['max']">Eta must be under 90 years.</div>
+            </div>
         </div>
 
         <input type="submit" value="Salva cliente" class="btn btn-success" style="margin-top: 50px;">
