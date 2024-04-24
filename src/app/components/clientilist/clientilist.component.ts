@@ -8,10 +8,10 @@ import { ClienteService } from 'src/app/service/cliente.service';
   templateUrl: './clientilist.component.html',
   styleUrls: ['./clientilist.component.css']
 })
-export class ClientilistComponent implements OnInit{
+export class ClientilistComponent implements OnInit {
   clienti!: Cliente[];
-  
-  constructor(private _clienteService:ClienteService, private _router: Router) {
+
+  constructor(private _clienteService: ClienteService, private _router: Router) {
   }
   ngOnInit(): void {
     this._clienteService.getClienti().subscribe({
@@ -33,17 +33,17 @@ export class ClientilistComponent implements OnInit{
   }
 
   deleteCliente(cliente: Cliente) {
-    this._clienteService.deleteCliente(cliente.id).subscribe((dati:any) => {
+    this._clienteService.deleteCliente(cliente.id).subscribe((dati: any) => {
       this.clienti.splice(this.clienti.indexOf(cliente), 1);
     });
   }
 
   showConfirmation(cliente: Cliente) {
     if (window.confirm('Sei sicuro di voler procedere ed eliminare il cliente ' + cliente.nome + ' ' + cliente.cognome + '?')) {
-        this.deleteCliente(cliente);
+      this.deleteCliente(cliente);
     } else {
-        alert('Azione annullata!');
+      alert('Azione annullata!');
     }
-}
-  
+  }
+
 }

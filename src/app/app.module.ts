@@ -13,10 +13,10 @@ import {
 } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
-const routes: Routes= [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: ClientilistComponent},
-  {path: 'form', component: ClienteformComponent}
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: ClientilistComponent },
+  { path: 'form', component: ClienteformComponent }
 ]
 
 @NgModule({
@@ -27,12 +27,12 @@ const routes: Routes= [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes, {useHash:true}),
+    RouterModule.forRoot(routes, { useHash: true }),
     HttpClientModule,
     FormsModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
+    { provide: APP_BASE_HREF, useValue: '/' },
     ClienteService
   ],
   bootstrap: [AppComponent]

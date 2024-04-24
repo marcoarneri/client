@@ -8,7 +8,7 @@ import { ClienteService } from 'src/app/service/cliente.service';
   templateUrl: './clienteform.component.html',
   styleUrls: ['./clienteform.component.css']
 })
-export class ClienteformComponent implements OnInit{
+export class ClienteformComponent implements OnInit {
   cliente!: Cliente;
 
   constructor(private _clienteService: ClienteService, private _router: Router) {
@@ -19,7 +19,7 @@ export class ClienteformComponent implements OnInit{
   }
 
   processaForm() {
-    if(this.cliente.id == undefined) {
+    if (this.cliente.id == undefined) {
       this._clienteService.createCliente(this.cliente).subscribe((c) => {
         console.log(c);
         this._router.navigate(['/']);
@@ -30,5 +30,5 @@ export class ClienteformComponent implements OnInit{
         this._router.navigate(['/']);
       });
     }
-  } 
+  }
 }

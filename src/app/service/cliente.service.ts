@@ -10,22 +10,22 @@ export class ClienteService {
   private cliente!: Cliente;
   private baseUrl: string = 'http://localhost:8083/clients';
   private httpOptions = {
-    headers: new HttpHeaders ({
-      'Access-Control-Allow-Origin' : '*',          //la richiesta la posso mandare a chiunque
-      'Access-Control-Allow-Method' : 'GET,POST,PUT,DELETE,OPTIONS',      //richieste accettate
-      'Content-Type' : 'application/json'     
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',          //la richiesta la posso mandare a chiunque
+      'Access-Control-Allow-Method': 'GET,POST,PUT,DELETE,OPTIONS',      //richieste accettate
+      'Content-Type': 'application/json'
     })
   };
 
   constructor(private _http: HttpClient) { }
 
-  getClienti() : Observable<any> {
+  getClienti(): Observable<any> {
     return this._http.get(this.baseUrl + "/get", this.httpOptions).pipe(
       map((response => response)),
       catchError(this.errorHandler<any>('getClienti()')));
   }
 
-  getCliente(id:string): Observable<any> {
+  getCliente(id: string): Observable<any> {
     return this._http.get(this.baseUrl + '/contatto/' + id, this.httpOptions).pipe(
       map((response => response)),
       catchError(this.errorHandler<any>('getClienti()')));
@@ -49,19 +49,19 @@ export class ClienteService {
       catchError(this.errorHandler<any>('deleteClienti(id: number)')));
   }
 
-  private errorHandler<T>(operation = 'Operazione', result?:T) {
-    return(error:any): Observable<T> => {
+  private errorHandler<T>(operation = 'Operazione', result?: T) {
+    return (error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation}) failed: ${error.message}`);
       return of(result as T);
     };
   }
 
-  setter(cliente: Cliente){
+  setter(cliente: Cliente) {
     this.cliente = cliente;
   }
 
-  getter(){
+  getter() {
     return this.cliente;
   }
 }
