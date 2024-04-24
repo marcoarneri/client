@@ -37,6 +37,13 @@ export class ClientilistComponent implements OnInit{
       this.clienti.splice(this.clienti.indexOf(cliente), 1);
     });
   }
-    
+
+  showConfirmation(cliente: Cliente) {
+    if (window.confirm('Sei sicuro di voler procedere ed eliminare il cliente ' + cliente.nome + ' ' + cliente.cognome + '?')) {
+        this.deleteCliente(cliente);
+    } else {
+        alert('Azione annullata!');
+    }
+}
   
 }

@@ -23,7 +23,7 @@ const routes: Routes= [
   declarations: [
     AppComponent,
     ClientilistComponent,
-    ClienteformComponent
+    ClienteformComponent,
   ],
   imports: [
     BrowserModule,
